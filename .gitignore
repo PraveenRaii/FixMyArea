@@ -1,0 +1,34 @@
+# =========================
+# Java / Spring Boot
+# =========================
+backend/target/
+*.class
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# =========================
+# Node / React
+# =========================
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# Spring Boot local configuration
+backend/src/main/resources/application.properties
