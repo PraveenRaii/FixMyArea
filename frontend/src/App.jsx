@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import ReportProblem from "./pages/ReportProblem";
+import MyComplaints from "./pages/MyComplaints";
 
 function App() {
     return (
@@ -16,6 +19,9 @@ function App() {
                     path="/"
                     element={<Navigate to="/login" replace />}
                 />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/report-problem" element={<ReportProblem />} />
+                <Route path="/my-complaints" element={<MyComplaints />} />
 
             </Routes>
         </BrowserRouter>
