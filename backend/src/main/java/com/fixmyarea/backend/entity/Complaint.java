@@ -3,6 +3,7 @@ package com.fixmyarea.backend.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "complaints")
 public class Complaint {
@@ -31,13 +32,13 @@ public class Complaint {
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+@ManyToOne(fetch = FetchType.EAGER)
+@JoinColumn(name = "user_id", nullable = false)
+private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    public Complaint() {
-    }
+   public Complaint() {
+    this.priority = "MEDIUM";
+}
 
     public Long getId() {
         return id;
@@ -110,4 +111,6 @@ public class Complaint {
     public void setPriority(String priority) {
         this.priority = priority;
     }
+
+    
 }

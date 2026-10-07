@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import ReportProblem from "./pages/ReportProblem";
 import MyComplaints from "./pages/MyComplaints";
+import OfficerDashboard from "./pages/OfficerDashboard";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/report-problem" element={<ReportProblem />} />
                 <Route path="/my-complaints" element={<MyComplaints />} />
+                <Route path="/officer-dashboard" element={<OfficerDashboard />} />
 
             </Routes>
         </BrowserRouter>

@@ -7,6 +7,18 @@ function MyComplaints() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
+   const updateStatus = async (id, status) => {
+    try {
+        await api.put(`/complaints/${id}/status?status=${status}`);
+
+        const response = await api.get("/complaints/my");
+        setComplaints(response.data);
+    } catch (error) {
+        console.error("Failed to update status:", error);
+        alert("Failed to update complaint status.");
+    }
+};
+
     useEffect(() => {
         const token = localStorage.getItem("token");
 
@@ -56,12 +68,13 @@ function MyComplaints() {
                             key={complaint.id}
                             className="bg-white p-5 rounded-xl shadow"
                         >
+                            
                             <div className="flex items-center justify-between gap-4">
                                 <div>
                                     <p className="text-xs text-gray-400 mb-1">
                                         Complaint #{complaint.id}
                                     </p>
-
+                                
                                     <h2 className="text-xl font-semibold text-gray-800">
                                         {complaint.title}
                                     </h2>
@@ -81,6 +94,17 @@ function MyComplaints() {
                                 <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium">
                                     📍 {complaint.location}
                                 </span>
+<span
+    className={`px-3 py-1 rounded-lg text-sm font-medium ${
+        complaint.priority === "HIGH"
+            ? "bg-red-50 text-red-600"
+            : complaint.priority === "MEDIUM"
+            ? "bg-yellow-50 text-yellow-600"
+            : "bg-green-50 text-green-600"
+    }`}
+>
+    ⚡ Priority: {complaint.priority}
+</span>
                             </div>
 
                             <div className="mt-4">
@@ -97,6 +121,15 @@ function MyComplaints() {
                                     {complaint.status.replace("_", " ")}
                                 </span>
                             </div>
+                            <select
+    value={complaint.status}
+    onChange={(e) => updateStatus(complaint.id, e.target.value)}
+    className="mt-3 px-3 py-2 border border-gray-200 rounded-lg text-sm"
+>
+    <option value="PENDING">Pending</option>
+    <option value="IN_PROGRESS">In Progress</option>
+    <option value="RESOLVED">Resolved</option>
+</select>
                         </div>
                     ))}
                 </div>

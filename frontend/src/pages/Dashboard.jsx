@@ -73,6 +73,8 @@ function Dashboard() {
                         🔔 Notifications
                     </button>
 
+                    
+
                     <button className="w-full text-left px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">
                         👤 My Profile
                     </button>
@@ -207,6 +209,17 @@ function Dashboard() {
                                     <div className="flex gap-4 mt-3 text-sm text-gray-400">
                                         <span>📍 {complaint.location}</span>
                                         <span>🏷️ {complaint.category}</span>
+                                       <span
+    className={`px-3 py-1 rounded-lg text-sm font-medium ${
+        complaint.priority === "HIGH"
+            ? "bg-red-50 text-red-600"
+            : complaint.priority === "MEDIUM"
+            ? "bg-yellow-50 text-yellow-600"
+            : "bg-green-50 text-green-600"
+    }`}
+>
+    ⚡ Priority: {complaint.priority}
+</span>
                                     </div>
                                 </div>
                             ))

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import api from "../services/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Login() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -24,6 +26,15 @@ localStorage.setItem("user", JSON.stringify({
 }));
 
 alert("Login Successful!");
+const role = response.data.role;
+
+if (role === "OFFICER") {
+    navigate("/officer-dashboard");
+} else if (role === "ADMIN") {
+    navigate("/dashboard");
+} else {
+    navigate("/dashboard");
+}
          
         } catch (error) {
             console.error(error);

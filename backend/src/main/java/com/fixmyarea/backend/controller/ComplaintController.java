@@ -7,6 +7,8 @@ import com.fixmyarea.backend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 
 @RestController
 @RequestMapping("/api/complaints")
@@ -57,4 +59,29 @@ public class ComplaintController {
         return ResponseEntity.ok(
                 complaintRepository.findByUser(user));
     }
+@PreAuthorize("hasAnyRole('ADMIN', 'OFFICER')")
+    @PutMapping("/{id}/status")
+public ResponseEntity<?> updateStatus(
+        @PathVariable Long id,
+        @RequestParam String status) {
+
+    Complaint complaint = complaintRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Complaint not found"));
+
+    complaint.setStatus(status);
+
+    Complaint updatedComplaint = complaintRepository.save(complaint);
+
+    return ResponseEntity.ok(updatedComplaint);
 }
+
+@PreAuthorize("hasAnyRole('ADMIN', 'OFFICER')")
+@GetMapping
+public ResponseEntity<?> getAllComplaints() {
+
+    return ResponseEntity.ok(
+            complaintRepository.findAll()
+    );
+}
+}
+
