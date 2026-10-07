@@ -16,26 +16,26 @@ function Login() {
                 email,
                 password,
             });
-console.log("Login Success:", response.data);
+            console.log("Login Success:", response.data);
 
-localStorage.setItem("token", response.data.token);
-localStorage.setItem("user", JSON.stringify({
-    name: response.data.name,
-    email: response.data.email,
-    role: response.data.role,
-}));
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify({
+                name: response.data.name,
+                email: response.data.email,
+                role: response.data.role,
+            }));
 
-alert("Login Successful!");
-const role = response.data.role;
+            alert("Login Successful!");
+            const role = response.data.role;
 
-if (role === "OFFICER") {
-    navigate("/officer-dashboard");
-} else if (role === "ADMIN") {
-    navigate("/dashboard");
-} else {
-    navigate("/dashboard");
-}
-         
+            if (role === "OFFICER") {
+                navigate("/officer-dashboard");
+            } else if (role === "ADMIN") {
+                navigate("/dashboard");
+            } else {
+                navigate("/dashboard");
+            }
+
         } catch (error) {
             console.error(error);
             alert("Invalid email or password");
@@ -107,15 +107,15 @@ if (role === "OFFICER") {
                 </form>
 
                 {/* Footer */}
-               <p className="text-center text-gray-500 text-sm mt-6">
-    Don't have an account?{" "}
-    <Link
-        to="/signup"
-        className="text-purple-600 font-semibold hover:underline"
-    >
-        Create Account
-    </Link>
-</p>
+                <p className="text-center text-gray-500 text-sm mt-6">
+                    Don't have an account?{" "}
+                    <Link
+                        to="/signup"
+                        className="text-purple-600 font-semibold hover:underline"
+                    >
+                        Create Account
+                    </Link>
+                </p>
 
             </div>
         </div>

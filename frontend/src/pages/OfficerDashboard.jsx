@@ -8,11 +8,11 @@ export default function OfficerDashboard() {
     const [loading, setLoading] = useState(true);
     const [selectedComplaint, setSelectedComplaint] = useState(null);
     useEffect(() => {
-    console.log(
-        "FULL COMPLAINT:",
-        JSON.stringify(selectedComplaint, null, 2)
-    );
-}, [selectedComplaint]);
+        console.log(
+            "FULL COMPLAINT:",
+            JSON.stringify(selectedComplaint, null, 2)
+        );
+    }, [selectedComplaint]);
     const [search, setSearch] = useState("");
     const [statusFilter, setStatusFilter] = useState("ALL");
     const [priorityFilter, setPriorityFilter] = useState("ALL");
@@ -366,10 +366,10 @@ export default function OfficerDashboard() {
 
                                                 <span
                                                     className={`px-3 py-1 rounded-full text-xs font-semibold ${complaint.priority === "HIGH"
-                                                            ? "bg-red-100 text-red-600"
-                                                            : complaint.priority === "MEDIUM"
-                                                                ? "bg-yellow-100 text-yellow-600"
-                                                                : "bg-green-100 text-green-600"
+                                                        ? "bg-red-100 text-red-600"
+                                                        : complaint.priority === "MEDIUM"
+                                                            ? "bg-yellow-100 text-yellow-600"
+                                                            : "bg-green-100 text-green-600"
                                                         }`}
                                                 >
                                                     {complaint.priority}
@@ -385,10 +385,10 @@ export default function OfficerDashboard() {
                                                         updateStatus(complaint.id, e.target.value)
                                                     }
                                                     className={`px-3 py-2 rounded-lg text-sm font-semibold border outline-none cursor-pointer ${complaint.status === "RESOLVED"
-                                                            ? "bg-green-50 text-green-600 border-green-200"
-                                                            : complaint.status === "IN_PROGRESS"
-                                                                ? "bg-blue-50 text-blue-600 border-blue-200"
-                                                                : "bg-orange-50 text-orange-600 border-orange-200"
+                                                        ? "bg-green-50 text-green-600 border-green-200"
+                                                        : complaint.status === "IN_PROGRESS"
+                                                            ? "bg-blue-50 text-blue-600 border-blue-200"
+                                                            : "bg-orange-50 text-orange-600 border-orange-200"
                                                         }`}
                                                 >
                                                     <option value="PENDING">Pending</option>
@@ -412,105 +412,105 @@ export default function OfficerDashboard() {
                 </div>
 
                 {selectedComplaint && (
-    <div
-        className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50"
-        onClick={() => setSelectedComplaint(null)}
-    >
-        <div
-            className="bg-white w-full max-w-lg rounded-2xl shadow-2xl p-6"
-            onClick={(e) => e.stopPropagation()}
-        >
-            <div className="flex justify-between items-start mb-6">
+                    <div
+                        className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50"
+                        onClick={() => setSelectedComplaint(null)}
+                    >
+                        <div
+                            className="bg-white w-full max-w-lg rounded-2xl shadow-2xl p-6"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="flex justify-between items-start mb-6">
 
-                <div>
-                    <p className="text-sm text-purple-600 font-semibold">
-                        Complaint #{selectedComplaint.id}
-                    </p>
+                                <div>
+                                    <p className="text-sm text-purple-600 font-semibold">
+                                        Complaint #{selectedComplaint.id}
+                                    </p>
 
-                    <h2 className="text-2xl font-bold text-slate-800 mt-1">
-                        {selectedComplaint.title}
-                    </h2>
-                </div>
+                                    <h2 className="text-2xl font-bold text-slate-800 mt-1">
+                                        {selectedComplaint.title}
+                                    </h2>
+                                </div>
 
-                <button
-                    type="button"
-                    onClick={() => setSelectedComplaint(null)}
-                    className="w-9 h-9 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600"
-                >
-                    ✕
-                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setSelectedComplaint(null)}
+                                    className="w-9 h-9 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600"
+                                >
+                                    ✕
+                                </button>
 
-            </div>
+                            </div>
 
-            <div className="space-y-4">
+                            <div className="space-y-4">
 
-                <div>
-                    <p className="text-sm text-slate-400">
-                        Description
-                    </p>
+                                <div>
+                                    <p className="text-sm text-slate-400">
+                                        Description
+                                    </p>
 
-                    <p className="text-slate-700 mt-1">
-                        {selectedComplaint.description}
-                    </p>
-                </div>
+                                    <p className="text-slate-700 mt-1">
+                                        {selectedComplaint.description}
+                                    </p>
+                                </div>
 
-                <div>
-                    <p className="text-sm text-slate-400">
-                        Category
-                    </p>
+                                <div>
+                                    <p className="text-sm text-slate-400">
+                                        Category
+                                    </p>
 
-                    <p className="font-medium text-slate-700 mt-1">
-                        {selectedComplaint.category}
-                    </p>
-                </div>
+                                    <p className="font-medium text-slate-700 mt-1">
+                                        {selectedComplaint.category}
+                                    </p>
+                                </div>
 
-                <div>
-                    <p className="text-sm text-slate-400">
-                        Location
-                    </p>
+                                <div>
+                                    <p className="text-sm text-slate-400">
+                                        Location
+                                    </p>
 
-                    <p className="font-medium text-slate-700 mt-1">
-                        📍 {selectedComplaint.location}
-                    </p>
-                </div>
+                                    <p className="font-medium text-slate-700 mt-1">
+                                        📍 {selectedComplaint.location}
+                                    </p>
+                                </div>
 
-                <div className="border-t border-slate-100 pt-4">
-    <p className="text-sm text-slate-400 mb-2">
-        Citizen Information
-    </p>
+                                <div className="border-t border-slate-100 pt-4">
+                                    <p className="text-sm text-slate-400 mb-2">
+                                        Citizen Information
+                                    </p>
 
-    <div className="bg-purple-50 rounded-xl p-4">
-        <p className="font-semibold text-slate-800">
-            👤 {selectedComplaint.user?.name}
-        </p>
+                                    <div className="bg-purple-50 rounded-xl p-4">
+                                        <p className="font-semibold text-slate-800">
+                                            👤 {selectedComplaint.user?.name}
+                                        </p>
 
-        <p className="text-sm text-slate-600 mt-1">
-            📧 {selectedComplaint.user?.email}
-        </p>
+                                        <p className="text-sm text-slate-600 mt-1">
+                                            📧 {selectedComplaint.user?.email}
+                                        </p>
 
-        <p className="text-sm text-slate-500 mt-1">
-            Citizen ID: #{selectedComplaint.user?.id}
-        </p>
-    </div>
-</div>
+                                        <p className="text-sm text-slate-500 mt-1">
+                                            Citizen ID: #{selectedComplaint.user?.id}
+                                        </p>
+                                    </div>
+                                </div>
 
-                <div className="flex gap-3">
+                                <div className="flex gap-3">
 
-                    <span className="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-sm font-semibold">
-                        Priority: {selectedComplaint.priority}
-                    </span>
+                                    <span className="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-sm font-semibold">
+                                        Priority: {selectedComplaint.priority}
+                                    </span>
 
-                    <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
-                        {selectedComplaint.status.replace("_", " ")}
-                    </span>
+                                    <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold">
+                                        {selectedComplaint.status.replace("_", " ")}
+                                    </span>
 
-                </div>
+                                </div>
 
-            </div>
+                            </div>
 
-        </div>
-    </div>
-)}
+                        </div>
+                    </div>
+                )}
 
             </main>
 
